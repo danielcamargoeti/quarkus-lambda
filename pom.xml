@@ -14,6 +14,7 @@
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <quarkus.platform.version>2.12.3.Final</quarkus.platform.version>
+        <google-api-services-oauth2.version>v2-rev20200213-2.0.0</google-api-services-oauth2.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
     </properties>
@@ -23,6 +24,13 @@
                 <groupId>${quarkus.platform.group-id}</groupId>
                 <artifactId>${quarkus.platform.artifact-id}</artifactId>
                 <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.quarkiverse.googlecloudservices</groupId>
+                <artifactId>quarkus-google-cloud-services-bom</artifactId>
+                <version>${quarkus.google-cloud-services.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -72,6 +80,17 @@
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>commons-logging-jboss-logging</artifactId>
+        </dependency>
+
+        <!-- additional deps -->
+        <dependency>
+            <groupId>io.quarkiverse.googlecloudservices</groupId>
+            <artifactId>quarkus-google-cloud-secret-manager</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-oauth2</artifactId>
+            <version>${google-api-services-oauth2.version}</version>
         </dependency>
     </dependencies>
 
@@ -206,7 +225,8 @@
                 <quarkus.native.additional-build-args>
                     -H:ResourceConfigurationFiles=resources-config.json,\
                     -H:ReflectionConfigurationFiles=reflection-config.json,\
-                    --trace-object-instantiation=java.security.SecureRandom
+                    -H:EnableURLProtocols=http\,https,\
+                    --initialize-at-run-time=org.apache.http.impl.auth.NTLMEngineImpl
                 </quarkus.native.additional-build-args>
             </properties>
         </profile>

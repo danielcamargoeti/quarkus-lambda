@@ -14,6 +14,6 @@ class GreetingResourceTest {
             .`when`().get("/")
             .then()
             .statusCode(200)
-            .body(`is`("Hello from RESTEasy Reactive"))
+            .body(`is`("https://accounts.google.com/o/oauth2/auth?access_type=offline&approval_prompt=force&client_id=some-id&redirect_uri=http://localhost:3000&response_type=code&scope=openid%20https://www.googleapis.com/auth/userinfo.profile%20https://www.googleapis.com/auth/userinfo.email&state=some-state"))
     }
 }

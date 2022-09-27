@@ -1,6 +1,6 @@
 [
     {
-        "name": "kotlin.KotlinVersion",
+        "name": "com.google.api.client.http.GenericUrl",
         "allPublicMethods": true,
         "allDeclaredFields": true,
         "allDeclaredMethods": true,
