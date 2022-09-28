@@ -1,0 +1,58 @@
+[
+    {
+        "name": "com.google.api.client.http.GenericUrl",
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "allDeclaredMethods": true,
+        "allDeclaredConstructors": true
+    },
+    {
+        "name": "com.google.api.client.auth.oauth2.TokenErrorResponse",
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "allDeclaredMethods": true,
+        "allDeclaredConstructors": true
+    },
+    {
+        "name": "com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest",
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "allDeclaredMethods": true,
+        "allDeclaredConstructors": true
+    },
+    {
+        "name": "com.google.api.client.auth.oauth2.AuthorizationCodeTokenRequest",
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "allDeclaredMethods": true,
+        "allDeclaredConstructors": true
+    },
+    {
+        "name": ",com.google.api.client.auth.oauth2.TokenRequest",
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "allDeclaredMethods": true,
+        "allDeclaredConstructors": true
+    },
+    {
+        "name": "com.google.api.client.util.GenericData",
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "allDeclaredMethods": true,
+        "allDeclaredConstructors": true
+    },
+    {
+        "name": "com.google.api.client.util.GenericData.EntrySet",
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "allDeclaredMethods": true,
+        "allDeclaredConstructors": true
+    },
+    {
+        "name": "java.util.AbstractMap",
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "allDeclaredMethods": true,
+        "allDeclaredConstructors": true
+    }
+]
