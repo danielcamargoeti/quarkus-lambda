@@ -196,16 +196,15 @@
                         <option>all-open:annotation=io.smallrye.config.ConfigMapping</option>
                         <option>all-open:annotation=javax.enterprise.context.ApplicationScoped</option>
                         <option>all-open:annotation=javax.ws.rs.Path</option>
-                        <option>all-open:annotation=com.google.api.client.util.Key</option>
                         <!-- no-args -->
                         <option>no-arg:annotation=com.fasterxml.jackson.annotation.JacksonAnnotation</option>
                         <option>no-arg:annotation=io.quarkus.runtime.annotations.RegisterForReflection</option>
-                        <option>no-arg:annotation=com.google.api.client.util.Key</option>
                     </pluginOptions>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
     <profiles>
         <profile>
             <id>native</id>
