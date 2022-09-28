@@ -18,5 +18,10 @@ Running AWS SAM locally
 
 ```bash
 # Make sure you have your "sam/env.json" file in place
-sam local invoke --template sam/sam.native.yaml --event sam/event.json --env-vars sam/env.json
+sam local invoke --template sam/sam.native.yaml --event sam/events/authorize.json
+```
+
+```bash
+# Make sure you have your "sam/env.json" file in place
+sam local invoke --template sam/sam.native.yaml --event sam/events/callback.json
 ```

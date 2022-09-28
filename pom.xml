@@ -27,13 +27,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>io.quarkiverse.googlecloudservices</groupId>
-                <artifactId>quarkus-google-cloud-services-bom</artifactId>
-                <version>${quarkus.google-cloud-services.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -52,6 +45,10 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-grpc</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -84,19 +81,18 @@
 
         <!-- additional deps -->
         <dependency>
-            <groupId>io.quarkiverse.googlecloudservices</groupId>
-            <artifactId>quarkus-google-cloud-secret-manager</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-oauth2</artifactId>
             <version>${google-api-services-oauth2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client</artifactId>
         </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>${quarkus.platform.group-id}</groupId>
@@ -200,9 +196,11 @@
                         <option>all-open:annotation=io.smallrye.config.ConfigMapping</option>
                         <option>all-open:annotation=javax.enterprise.context.ApplicationScoped</option>
                         <option>all-open:annotation=javax.ws.rs.Path</option>
+                        <option>all-open:annotation=com.google.api.client.util.Key</option>
                         <!-- no-args -->
                         <option>no-arg:annotation=com.fasterxml.jackson.annotation.JacksonAnnotation</option>
                         <option>no-arg:annotation=io.quarkus.runtime.annotations.RegisterForReflection</option>
+                        <option>no-arg:annotation=com.google.api.client.util.Key</option>
                     </pluginOptions>
                 </configuration>
             </plugin>
@@ -221,8 +219,10 @@
                 <quarkus.package.type>native</quarkus.package.type>
                 <quarkus.native.container-build>true</quarkus.native.container-build>
                 <quarkus.native.builder-image>quay.io/quarkus/ubi-quarkus-mandrel:22.2-java11</quarkus.native.builder-image>
-                <quarkus.native.native-image-xmx>2g</quarkus.native.native-image-xmx>
+                <quarkus.native.native-image-xmx>8g</quarkus.native.native-image-xmx>
                 <quarkus.native.additional-build-args>
+                    -H:+RemoveSaturatedTypeFlows,\
+                    -H:+PrintAnalysisStatistics,\
                     -H:ResourceConfigurationFiles=resources-config.json,\
                     -H:ReflectionConfigurationFiles=reflection-config.json,\
                     -H:EnableURLProtocols=http\,https,\

@@ -20,7 +20,9 @@ Resources:
             Environment:
                 Variables:
                     DISABLE_SIGNAL_HANDLERS: true
-                    GOOGLE_CLIENT_SECRET: secret
+                    GOOGLE_CLIENT_ID: null
+                    GOOGLE_CLIENT_SECRET: null
+                    GOOGLE_CLIENT_REDIRECT_URI: null
             Events:
                 GetResource:
                     Type: Api
