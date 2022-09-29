@@ -12,6 +12,6 @@ interface GoogleOAuthProperties {
     fun redirectUri(): String
 
     companion object {
-        const val PREFIX = "google"
+        const val PREFIX = "pws-google"
     }
 }

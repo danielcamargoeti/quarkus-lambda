@@ -1,4 +1,4 @@
 {
-    "path": "/callback?...",
+    "path": "/callback?state=some-state&code=4%2F0ARtbsJq5sVmW60sVxVWpKemSD3uUpbYjkAEpDIEU7L9bXZ1xGB1UQR_UI5zaNEM-g_xJgw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=consent",
     "httpMethod": "GET"
 }

@@ -23,7 +23,7 @@ class CallbackResource(
         @QueryParam("code") code: String,
         @QueryParam("state") state: String
     ): String {
-        logger.debug("Get refresh token")
+        logger.info("Get refresh token")
         val (refreshToken) = googleOAuthClient.authenticate(code)
 
         return refreshToken

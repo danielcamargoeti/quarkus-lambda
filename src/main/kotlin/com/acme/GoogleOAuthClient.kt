@@ -1,8 +1,11 @@
 package com.acme
 
-import com.google.api.client.auth.oauth2.TokenResponse
-import com.google.api.client.googleapis.auth.oauth2.*
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
+import com.google.api.client.auth.oauth2.BearerToken
+import com.google.api.client.auth.oauth2.Credential
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest
+import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets
 import com.google.api.client.http.apache.v2.ApacheHttpTransport
 import com.google.api.client.json.JsonFactory
 import com.google.api.client.json.gson.GsonFactory
@@ -70,59 +73,37 @@ class GoogleOAuthClient(
             .newTokenRequest(authorizationCode)
             .setRedirectUri(properties.redirectUri())
 
-        logger.info("Entries {}", codeTokenRequest.entries.size)
+        logger.warn("Entries {}", codeTokenRequest.entries.size)
+        codeTokenRequest.entries.forEach { e ->
+            logger.info("${e.key} = ${e.value}")
+        }
+
+        logger.info("Let's execute the request")
         val token = codeTokenRequest.execute()
 
         // Let's save the refresh token in DynamoDB so that every instance will
         // be able to reuse it
         val httpTransport = ApacheHttpTransport()
         val jsonFactory: JsonFactory = GsonFactory.getDefaultInstance()
-        val credential = AuthCredential()
-        credential.accessToken = token.accessToken
 
-        val oauth2 = Oauth2
-            .Builder(httpTransport, jsonFactory, credential)
+        val httpRequestInitializer = Credential.Builder(BearerToken.authorizationHeaderAccessMethod()).build()
+        httpRequestInitializer.accessToken = token.accessToken
+        logger.info("httpRequestInitializer.accessToken {}", httpRequestInitializer.accessToken)
+
+        val oauth2: Oauth2 = Oauth2
+            .Builder(httpTransport, jsonFactory, httpRequestInitializer)
             .setApplicationName(properties.applicationName())
             .build()
 
-        val userInfo = oauth2
+        val get = oauth2
             .userinfo()
             .get()
-            .execute()
+
+        val userInfo = get.execute()
 
         return AuthUser(
             refreshToken = token.refreshToken,
             userInfo = userInfo
         )
-    }
-
-    // A new cache will be created for each instance. In other words, each instance will
-    // resolve a new access token every 59 minutes and 55 seconds.
-    fun getAuthCredential(refreshToken: String): AuthCredential {
-        logger.debug("Fetching a new access token")
-        val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
-
-        val jsonFactory: JsonFactory = GsonFactory.getDefaultInstance()
-
-        val tokenResponse: TokenResponse = GoogleRefreshTokenRequest(
-            httpTransport,
-            jsonFactory,
-            refreshToken,
-            properties.clientId(),
-            properties.clientSecret()
-        )
-            .setScopes(scopes)
-            .setGrantType("refresh_token")
-            .execute()
-
-        // Instantiate a credential
-        val credential = AuthCredential()
-        credential.accessToken = tokenResponse.accessToken
-
-        return credential
-    }
-
-    fun applicationName(): String {
-        return properties.applicationName()
     }
 }

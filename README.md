@@ -17,11 +17,9 @@ mvn clean package -Pnative
 Running AWS SAM locally
 
 ```bash
-# Make sure you have your "sam/env.json" file in place
-sam local invoke --template sam/sam.native.yaml --event sam/events/authorize.json
+sam local invoke --template sam/sam.native.yaml --env-vars sam/env.json --event sam/events/authorize.json
 ```
 
 ```bash
-# Make sure you have your "sam/env.json" file in place
-sam local invoke --template sam/sam.native.yaml --event sam/events/callback.json
+sam local invoke --template sam/sam.native.yaml --env-vars sam/env.json --event sam/events/callback.json
 ```

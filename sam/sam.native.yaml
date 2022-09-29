@@ -20,6 +20,7 @@ Resources:
             Environment:
                 Variables:
                     DISABLE_SIGNAL_HANDLERS: true
+                    LOG_LEVEL: null
                     GOOGLE_CLIENT_ID: null
                     GOOGLE_CLIENT_SECRET: null
                     GOOGLE_CLIENT_REDIRECT_URI: null
