@@ -5,12 +5,12 @@ import io.quarkus.runtime.annotations.RegisterForReflection
 @Suppress("unused")
 @RegisterForReflection(
     targets = [
-        // google-http-client-1.42.2.jar
+        // google-http-client
         com.google.api.client.http.HttpHeaders::class,
         com.google.api.client.json.rpc2.JsonRpcRequest::class,
         com.google.api.client.json.webtoken.JsonWebSignature::class,
         com.google.api.client.json.webtoken.JsonWebToken.Header::class,
-        // google-api-client:2.0.0
+        // google-api-client
         com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl::class,
         com.google.api.client.googleapis.auth.oauth2.GoogleBrowserClientRequestUrl::class,
         com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets::class,
@@ -23,7 +23,7 @@ import io.quarkus.runtime.annotations.RegisterForReflection
         com.google.api.client.googleapis.json.GoogleJsonError::class,
         com.google.api.client.googleapis.json.GoogleJsonErrorContainer::class,
         com.google.api.client.googleapis.mtls.ContextAwareMetadataJson::class,
-        // google-oauth-client:1.34.1
+        // google-oauth-client
         com.google.api.client.auth.oauth.OAuthAuthorizeTemporaryTokenUrl::class,
         com.google.api.client.auth.oauth.OAuthCallbackUrl::class,
         com.google.api.client.auth.oauth.OAuthCredentialsResponse::class,
