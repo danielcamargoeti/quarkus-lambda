@@ -23,6 +23,13 @@ import io.quarkus.runtime.annotations.RegisterForReflection
         com.google.api.client.googleapis.json.GoogleJsonError::class,
         com.google.api.client.googleapis.json.GoogleJsonErrorContainer::class,
         com.google.api.client.googleapis.mtls.ContextAwareMetadataJson::class,
+        // google-api-services-oauth2-v2
+        com.google.api.services.oauth2.model.Userinfo::class,
+        com.google.api.services.oauth2.model.Tokeninfo::class,
+        com.google.api.services.oauth2.Oauth2.Tokeninfo::class,
+        com.google.api.services.oauth2.Oauth2.Userinfo.Get::class,
+        com.google.api.services.oauth2.Oauth2.Userinfo.V2.Me::class,
+        com.google.api.services.oauth2.Oauth2.Userinfo.V2.Me.Get::class,
         // google-oauth-client
         com.google.api.client.auth.oauth.OAuthAuthorizeTemporaryTokenUrl::class,
         com.google.api.client.auth.oauth.OAuthCallbackUrl::class,
@@ -37,7 +44,7 @@ import io.quarkus.runtime.annotations.RegisterForReflection
         com.google.api.client.auth.oauth2.TokenRequest::class,
         com.google.api.client.auth.oauth2.TokenResponse::class,
         com.google.api.client.auth.openidconnect.IdToken.Payload::class,
-        com.google.api.client.auth.openidconnect.IdTokenResponse::class,
+        com.google.api.client.auth.openidconnect.IdTokenResponse::class
         // @TODO: This must be fixed first
         // https://github.com/googleapis/google-oauth-java-client/issues/947
         // com.google.api.client.auth.openidconnect.IdTokenVerifier.PublicKeyLoader.JsonWebKeySet::class
